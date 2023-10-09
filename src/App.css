@@ -1,38 +1,148 @@
+*{
+  box-sizing: border-box;
+  
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #f4f4f4;
+  background-image: linear-gradient(violet,pink, skyblue);
+}
+
+
+
+/* Form container */
+form {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 40%;
+  height: 40%;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Form elements */
+.form-group {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  flex: 0 0 25%;
+  text-align: center;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  flex:0 0 75%;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Submit button */
+button[type="submit"] {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Switch button */
+p {
+  margin-top: 20px;
+}
+
+p button {
+  background-color: transparent;
+  border: none;
+  color: #007BFF;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+p button:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+@media screen and (max-width: 768px)  {
+  form {
+    width: 80%; /* Adjust the width for smaller screens */
+  }
+}
+
+
+.homepage{
+  background-color: gray;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(violet,pink, skyblue);
+}
+
+.header{
   color: white;
+  height: 10%;
+  width: 100%;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+article{
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.input{
+  width: 400px;
+  height: 200px;
+  border: skyblue solid 1px;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 15px;
+  vertical-align:top;
+  white-space: nowrap;
+  resize: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.articleheading .search{
+  margin: 15px;
 }
