@@ -9,6 +9,43 @@ function Home() {
         description: ''
       });
 
+    const [imageUrls,setImageUrl]= React.useState([]);
+    const [images, setImages] = React.useState([]);
+
+
+    React.useEffect(() => {
+        // Function to fetch images using Promises
+        const fetchImages = () => {
+          const imagePromises = imageUrls.map((url) =>
+            fetch(url)
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
+                }
+                return response.blob();
+              })
+              .then((blob) => URL.createObjectURL(blob))
+              .catch((error) => {
+                console.error('Error fetching image:', error);
+                return null;
+              })
+          );
+    
+          // Wait for all image Promises to resolve
+          Promise.all(imagePromises)
+            .then((imageData) =>{
+                const filteredImages = imageData.filter((image) => image !== null);
+                setImages(filteredImages);
+            }) // Filter out any null values
+            .catch((error) => console.error('Error fetching images:', error));
+        };
+    
+        if (imageUrls.length > 0) {
+          fetchImages();
+        }
+        
+      }, [imageUrls]);
+
     function onChange(e){
         const { name, value } = e.target;
         setFormData({
@@ -18,9 +55,15 @@ function Home() {
     }
 
     async function search(){
-        const response = await axios.post('http://localhost:3001/api/users/movies', formData);
-        console.log("respoinse is")
-        console.log(response.data)
+        try{
+            const response = await axios.post('http://localhost:3001/api/users/movies', formData);
+            console.log("respoinse is",response.data.equivalentColumnValues);
+            setImageUrl(response.data.equivalentColumnValues);
+        }
+        catch(e){
+            console.log("error is",e);        
+        }
+
     }
 
     React.useEffect(()=>{
@@ -51,6 +94,16 @@ function Home() {
         <div className='search'>
             <button onClick={search}>SUGGEST MOVIES</button>
         </div>
+        <div className='image'>
+        {images.map((image, index) => (
+
+            <div key={index}>
+                <img key={index} src={image} alt={`Image ${index}`}  />
+            </div>
+
+      ))}
+                  </div>
+ 
         </article>
     </div>
   )
